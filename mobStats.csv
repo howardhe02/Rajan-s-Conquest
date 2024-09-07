@@ -1,0 +1,20 @@
+Name,Hp,Attack,Magic Attack,Defense,Magic Resist,Speed,totalStats
+Toad,10,5,1,2,0,1,19
+Slime,10,1,1,4,4,0,20
+Chocobo,9,5,1,0,2,4,21
+Cactuar,8,3,3,1,1,3,19
+Sejuani,6,1,5,5,5,1,23
+Zed,10,8,1,0,0,5,24
+Big Daddy,10,5,2,3,3,0,23
+Murloc,5,1,7,0,0,7,20
+Creeper,5,20,1,0,0,0,26
+Allah,20,8,1,2,7,3,41
+Tuna,9,4,4,4,0,0,21
+Snorlax,23,1,1,8,2,0,35
+Naruto,12,6,1,2,2,10,33
+Goblin,7,3,1,2,0,3,16
+Witch,5,0,20,0,0,0,25
+Polar Bear,12,6,1,2,4,2,27
+Archer,7,7,1,2,0,4,21
+Mage,5,0,8,0,4,2,19
+TheWall,100,0,1,10,10,0,121

@@ -1,0 +1,111 @@
+/*Names: James, Kowan, Yibo, Howard
+Main contributors: Yibo
+ * Date Finished: 2020-04-24
+ * Title: styles page
+ * Description: This is where the styles for the website pages are.
+ * */
+*{
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+body{
+	font-family: 'Metrophobic', sans-serif;
+	text-align: center;
+	background-color: #424242;
+}
+h1{
+	font-size: 50px;
+	color: white;
+	font-family: 'Permanent Marker', cursive;
+}
+h2{
+	font-family: 'Permanent Marker', cursive;
+}
+h3{
+	margin-top: 2%;
+}
+p{
+	margin-top: 2%;
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+/* nav bar */
+#divNavBar{
+	overflow: hidden;
+	position: fixed;
+	background-color: black;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+#divNavBar a{
+	font-size: 10px;
+	float: left;
+	display: block;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	padding: 1.4% 0.5%;
+	text-decoration: none;
+	width: 19%;
+}
+#divNavBar a:hover{
+	opacity: 0.5;
+	background-color: white;
+	color: black;
+}
+/* header */
+#divHeader{
+	margin-bottom: 2%;
+}
+/* text boxes */
+.box{
+	width: 100%;
+	height: 800px;
+	padding-top: 3%;
+}
+.text{
+	border-radius: 10px;
+	width: 60%;
+	height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #E6E6E6;
+}
+.screenshots{
+	margin-top: 2%;
+}
+#divScreenshots h3{
+	margin-top: 5%;
+}
+#divLeft{
+	background-color: white; 
+	border: 2px solid black;
+	height: 100px;
+	width: 50%; 
+	float: left;
+	font-size: 200%;
+}
+#divRight{
+	border: 2px solid black;
+	background-color: white;
+	height: 100px; 
+	margin-left: 50%;
+	font-size: 200%;
+}
+#divDownload div:hover{
+	background-color: grey;
+}
+#divFunctions h2{
+	margin-top: 7%;
+}
+/* Home button */
+.home{
+	position: fixed;
+	top: 0;
+}
+.home img:hover{
+	opacity: 50%;
+}

@@ -1,0 +1,123 @@
+<!--Names: James, Kowan, Yibo, Howard
+Main contributors: James
+ * Date Finished: 2020-04-24
+ * Title: Homepage
+ * Description: The homepage of our assignment
+ * -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Homepage</title>
+		<!-- stylesheet -->
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation -->
+		<div id="divNavBar">
+			<a href="#divIntro">Introduction</a>
+			<a href="#divHowToPlay">How to Play</a>
+			<a href="#divScreenshots">Screenshots</a>
+			<a href="#divDownload">Play Now!</a>
+			<a href="codeDescriptions.html">Code Descriptions</a>
+		</div>
+		<!-- Header -->
+		<div id="divHeader" style="	margin-top: 5%;">
+			<h1>Welome to</h1>
+			<h1>The Tower of Krnic</h1>
+		</div>
+		<div style="background-image: url(images/tower.jpg); background-attachment: fixed;background-size: cover; height: 1000px; width: 100%;">
+		</div>
+		<!-- Introduction -->
+		<div id="divIntro" class="box">
+			<h1 class="subheader">Introduction</h1>
+			<div class="text">
+				<h2 style="padding-top: 2%; margin-top: 2%;">
+					Welcome to The Tower of Krnic, here is some important information about the game.
+				</h2>
+				<h3 style="font-family: 'Permanent Marker', cursive;">Lore</h3>
+				<p>
+					The answer is always at the top. That is the only thing I can tell you. If you wish to have you answer, if you wish to find her, head to the top. Money. Glory. Absolute Power. If you seek abilities and answers which are like magic, head to the top. All of the universe's wisdom, glory, and happiness- It has been placed at the top of this Tower. This Tower, is such a place.<br>
+					The Outer Tower of each Floor is the size of the Americas, making the Tower at least 11 times the size of Earth. The Tower is divided into three parts: the Inner Tower, the Outer Tower, and the Middle Area. Of the world outside the Tower, next to nothing is known.
+				</p>
+				<h3 style="font-family: 'Permanent Marker', cursive;">Objective</h3>
+				<p>
+					1. In this game your goal is to reach the top of a 100 floor tower.<br>
+					2. When you die in tower, you die FOREVER. (But you can be revived using the healing spell).<br>
+				</p>
+			</div>
+		</div>
+		<!-- How to play -->
+		<div id="divHowToPlay" class="box">
+			<h1 class="subheader">How To Play</h1>
+			<div class="text" style="height: 600px;">
+				<h2 style="padding-top: 2%; margin-top: 2%;">Defeat enemies, advance through floors.</h2>
+				<p>
+					You will face 2 mobs on each floor in a 2v2 battle<br>
+					Your goal is to defeat both mobs in order to advance to the next floor.<br>
+					You can control your party's action by entering the key corresponding to the move.
+				</p>
+				<p>
+					Enter 1 for attack, 2 for magic, 3 for heal.
+				</p>
+				<h3>Attacking:</h3>
+				<p>
+					When attacking, the player can choose which mob to attack by inputting 1 or 2 <br>
+					The damage is calculated by: attacker's ATK - (defender's HP + defender's DEF).
+				</p>
+				<h3>Magic:</h3>
+				<p>
+					Similar to attack, player can choose the target by inputting 1 or 2.<br>
+					The damage is calculated by: attacker's MAG - (defender's HP + defender's RES).
+				</p>
+				<h3>Healing:</h3>
+				<p>
+					Enter 1 to "self heal", enter 2 to "friendly heal".<br>
+					The amount of healing given is equal to the healer's MAG.<br>
+					TIP: Healing can go above your max HP and Revive Teamates!
+				</p>
+			</div>
+		</div>
+		<!-- Screenshots -->
+		<div id="divScreenshots" class="box">
+			<h1 class="subheader">Screenshots</h1>
+				<div class="text" style="height: 900px;">
+					<h2 class="subheader">Intro Screen</h2>
+					<img src="images/intro.png">
+					<p>This is the introduction screen</p>
+					<h2 class="subheader" style="margin-top: 2%;">Stats</h2>
+					<img src="images/stats.png">
+					<p>This is the screen where the stats of both your party and the enemy part is shown.</p>
+					<h2 class="subheader" style="margin-top: 2%;">Combat</h2>
+					<img src="images/combat.png">
+					<p>This screen is where the combat messages occur.</p>
+				</div>
+			</div>
+		</div>
+		<!--PEER REVIEW-->
+		<div class="box" style="margin-top: 10%;">
+			<h1 class="subheader">Peer Evaluation</h1>
+			<img src="images/peerEvaluation.PNG">
+			<img src="images/peerEvaluation2.PNG">
+		</div>
+		<!-- Download -->
+		<div id="divDownload" class="box" style="height: 300px;">
+			<h1 class="subheader">Download Links</h1>
+			<div class="text" style="height: 100px; margin-top: 2%;">
+				<a href="sourceCode.zip">
+					<div id="divLeft">
+						<p style="margin-top: 5%; text-decoration: none; color: black;">Project File (.zip)</p>
+					</div>
+				</a>
+				<a href="source.txt" style="text-decoration: none;">
+					<div id="divRight">
+						<p style="margin-top: 5%; color: black;">Source File (.txt)</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</body>
+</html>

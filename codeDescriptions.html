@@ -1,0 +1,104 @@
+<!--Names: James, Kowan, Yibo, Howard
+Main contributors: YiBo
+ * Date Finished: 2020-04-24
+ * Title: Code Descriptions Page
+ * Description: Page where the main parts of the code is explained
+ * -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Code Description</title>
+		<!-- stylesheet -->
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Metrophobic" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div id="divHeader">
+			<h1>Code Descriptions</h1>
+		</div>
+		<div class="box">
+			<h1 class="subheading">FileIO Implementation</h1>
+			<div class="text" style="height: 1500px;">
+				<h2 class="subheading">Creating mobs</h2>
+				<img src="images/fileIO.png" class="screenshots" style="width: 50%;">
+				<p>
+					This code uses readers to count the amount of mobs in the file,
+					then set a 2d array with that length. The first part of the array sets how many mobs there are.
+					The second part sets what the mob stats are in strings. The strings are later converted into integers.
+					In the for loop, this is what is happening. Creating and setting values into the array.
+				</p>
+				<h2 class="subheading" style="margin-top: 10%;">Writing player scores</h2>
+				<img src="images/fileIO2.png" class="screenshots" style="width: 70%;">
+				<p>
+					This code sets up the reader and writing functions which are later used.
+				</p>
+				<img src="images/fileIO3.png" class="screenshots" style="width: 100%;">
+				<p>
+					This uses the previous read and writing functions to print out past attempts at the Tower of Kirnic. It also writes to a file the current user's stats of name and highest floor.
+				</p>
+			</div>
+		</div>
+		<div class="box" style="margin-top: 50%;">
+			<h1 class="subheading">2D Array Implementation</h1>
+			<div class="text">
+				<h2 class="subheading">Names</h2>
+				<img src="images/2DArray.png" class="screenshots" style="width: 75%;">
+				<p>
+					This is a simple array that uses 2D array format to ensure that enemy names are grouped and team member names are grouped. This makes it easier to use the names practically in the format of: participants[0] for team members and participants[1] for enemies.
+				</p>
+			</div>
+		</div>
+		<div class="box">
+			<h1 class="subheading">Functions</h1>
+			<div id="divFunctions" class="text" style="height: 3600px;">
+				<h2 class="subheading" style="margin-top: 0%;">yourTurn</h2>
+				<img src="images/function1.png" class="screenshots" style="width: 75%;">
+				<p>
+					This is the function that runs during the player phase. The function requires the parameters of the player's input decision (1 for attack, 2 for magic, 3 for heal) and the stats and names of all participants in the battle (via the arrays and 2D arrays).<br><br>
+					The first if statements are used to get the player's decision. The if statements within each decision are used to get the player's decisions on their targets.<br><br>
+					The function returns the health of whatever character is affected by the player's decision.
+				</p>
+				<h2 class="subheading">attack</h2>
+				<img src="images/function2.png" class="screenshots" style="width: 75%;">
+				<p>
+					The attack function only runs when the player chooses to attack by inputting 1 and has chosen the enemy to attack. The parameters include the enemy's name, HP, and DEF, as well as the player's ATK.<br><br>
+					The function calculates the damage dealt to the enemy and returns the resultant HP of the enemy.
+				</p>
+				<h2 class="subheading">magicAttack</h2>
+				<img src="images/function3.png" class="screenshots" style="width: 75%;">
+				<p>
+					This runs when the player inputs 2 and has chosen the enemy to attack. This function requires the parameter of the enemy's HP, RES, and the player's MAG.<br><br>
+					The function calculates the magic damage dealt and returns the resultant HP of the enemy.
+				</p>
+				<h2 class="subheading">heal</h2>
+				<img src="images/function4.png" class="screenshots" style="width: 75%;">
+				<p>
+					The function runs when the player inputs 3 and has chosen the target of the heal. The parameters include the HP of the target being healed, the MAG of the healer, and the name of the receiver.<br><br>
+					The function calculates and returns the resultant HP of the receiver of the heal.
+				</p>
+				<h2 class="subheading">attackDecision</h2>
+				<img src="images/function5.png" class="screenshots" style="width: 75%;">
+				<p>
+					This function gets the player's input for the target they want to attack or heal. It requires the names of both the enemy which will be used to specify the target. It also requires the boolean of whether to heal or attack.<br><br>
+					If heal is chosen, it will return the player's input on the type of healing. If not, it will return the player's input on the target of the attack.
+				</p>
+				<h2 class="subheading">enemyTurn</h2>
+				<img src="images/function6.png" class="screenshots" style="width: 75%;">
+				<p>
+					This function runs during the enemy phase for each enemy. The function's parameter includes all battle participant's stats and the names of all of the participants. The parameters will be inputted into other functions depending on the enemy's stats via if statements.<br><br>
+					The if statements check the HP of both enemies. If the HP of the enemy is less than 5, then it runs the function: enemySelfHeal, which heals itself. If the enemy's partner' HP is less than 5, then it runs: enemyPartnerHeal, which heals its partner. If they are both above 5 HP, it runs: enemyAtk, which is a function that attacks the player's party.<br><br>
+					This function returns the HP the enemy's HP that is being healed or returns the HP of the player's party if enemyAtk runs.
+				</p>
+			</div>
+		</div>
+		<!-- Home Button -->
+		<div class="home">
+			<a href="index.html">
+				<img src="images/home.png" width="70">
+			</a>
+		</div>
+	</body>
+</html>

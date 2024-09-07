@@ -1,0 +1,682 @@
+/*Names: James, Kowan, Yibo, Howard
+Main contributors: James
+ * Date Finished: 2020-04-24
+ * Title: Main Run Page
+ * Description: Page where all the main functions go. Looping the 100 floors and calling and creating mobs
+ * */
+
+package com.company;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        //declare all mob variables.
+        int floorNum=1;
+        boolean dead=false;
+        int difficulty=1;
+        createMob member1=new createMob();
+        createMob member2=new createMob();
+        member1.mobStats=member1.statsCalc(null,"player");
+        member2.mobStats=member2.statsCalc(null, "player");
+
+        //create enemies object
+        createMob enemy1=new createMob();
+        createMob enemy2=new createMob();
+        //reading and writing to the player scores list
+        BufferedWriter scores=new BufferedWriter(new FileWriter("previousHeros.txt",true));
+        BufferedReader pastPeeps=new BufferedReader(new FileReader("previousHeros.txt"));
+        //variables used at the end
+        String person, coolness;
+
+        //declare inputs
+        Scanner playerInput=new Scanner(System.in);
+
+        //beginning of the tutorial
+        System.out.println("Welcome to the Tower of Krnic! Your goal is to reach the top of a 100 floor tower! At the top, you will win a grand prize! I think...");
+        System.out.println("What is your name adventurer?");
+        /*----------------------------------------*/
+        member1.name = playerInput.nextLine();
+        System.out.println("Hello "+member1.name+"!");
+
+        System.out.println("Now adventurer, you will enter the first floor in the Tower of Krnic!\nAlso! One important thing to know is that healing can go above your max HP. Intended. Totally... So use it and abuse it!");
+
+        /*--------------------USE OF LOOPS--------------------*/
+        while(floorNum<=100 && !dead){
+            boolean first5=true;
+            /*---------------------------------use this line with enemy1 or enemy2 to generate a new random mob----------------------------
+             * ---------------------------------enemy1.name gives its name// enemy1.mobStats gives an array of the mob stats-------------------*/
+            int enemyNum=createMob.mobNum();
+            enemy1.mobStats=enemy1.randomMob((int)Math.round(createMob.mobNum()*Math.random()), createMob.mobNum());
+            enemy1.name=enemy1.mobName((int)Math.round(createMob.mobNum()*Math.random()), createMob.mobNum());
+
+            enemyNum=createMob.mobNum();
+            enemy2.mobStats=enemy2.randomMob((int)Math.round(createMob.mobNum()*Math.random()), createMob.mobNum());
+            enemy2.name=enemy2.mobName((int)Math.round(createMob.mobNum()*Math.random()),createMob.mobNum());
+            System.out.println("You are now entering floor "+floorNum);
+
+            /*------------------------------------------------------------------
+        ---------------------USE OF 2D ARRAY------------------------------
+        ---------------------------------------------------------------------*/
+            //2d array organizes enemies as one and your party as the other
+            String[][] participants={
+                    {member1.name,member2.name},
+                    {enemy1.name,enemy2.name}
+            };
+            dead=combat.floor(member1.mobStats, member2.mobStats,enemy1.mobStats,enemy2.mobStats, participants, member2.name);
+
+            //give upgrade points to player to spend
+            if(floorNum%5==0){
+                /*--------------------LOTS OF SELECTION--------------------*/
+                if(first5){
+                    //check btoon givebonus on the first 5 floors
+                    System.out.println("Congrats on not dying this early on!\nEvery 5 floors on this tower is like a checkpoint...only you don't respawn. \n When you die in this tower, you die forever... so don't die.\n But anyways, every 5 floors you gain upgrade points which allow you to increase your stats. \n Since this is your first 5 floors, I'll give you 10 points to upgrade yourself with. Good luck and don't die!");
+                    member1.statAdd(10,member1.mobStats,member1.name);
+                    member2.statAdd(10,member2.mobStats,member2.name);
+                    first5=false;
+                }
+                else{
+                    System.out.println("Welcome back!\r How do you plan to not die?");
+                    member1.statAdd(5,member1.mobStats,member1.name);
+                    member2.statAdd(5,member2.mobStats,member2.name);
+                    System.out.println("Ok then!\n Off you go to not die!");
+                }
+            }
+            floorNum++;
+        }
+
+        if(dead){
+            System.out.println("You have died.\nThat sucks. Maybe next life you won't die.\n On the bright side though, I'll write you down in the history of this dungeon in this easily readable file called 'previousHeros.txt'.\n I'll read the past people to you now:");
+            double coolnessRate=Math.random();
+            //easter egg for random coolness
+            if(coolnessRate<0.25){
+                coolness="Smells funny. OK";
+            }
+
+            else if(coolnessRate<0.5){
+                coolness="Subarashi desu ka?";
+            }
+
+            else if(coolnessRate<0.75){
+                coolness="I've never met this person";
+            }
+
+            else{
+                coolness="Coolest";
+            }
+
+            //print out everyone
+            /*------------------------------------------------------------------
+        ---------------------USE OF File Reading------------------------------
+        ---------------------------------------------------------------------*/
+            person=pastPeeps.readLine();
+            while(person!=null){
+                System.out.println(person);
+                person=pastPeeps.readLine();
+            }
+            /*------------------------------------------------------------------
+        ---------------------USE OF Writing to File------------------------------
+        ---------------------------------------------------------------------*/
+            System.out.println("And lastly... your party:\n"+member1.name+", "+member2.name+", "+Integer.toString(floorNum)+", "+coolness);
+            scores.write(member1.name+","+member2.name+","+Integer.toString(floorNum-1)+","+coolness+"\r\n");
+
+        }
+        /*------------------------------------------------------------------
+        ---------------------USE OF File Writing------------------------------
+        ---------------------------------------------------------------------*/
+        else{
+            coolness="Super Awesome Gamer";
+            System.out.println("You really made it to the 100th floor? Huh...\nWell I didn't really think you'd get this far so...\nI'll add your name to the dead players list with the status of '-SURVIVED-'.\nGo home now please.");
+            System.out.println("Your party was added to a super cool document:\n"+member1.name+", "+member2.name+", "+Integer.toString(floorNum)+", "+coolness+", -SURVIVED-");
+            scores.write(member1.name+","+member2.name+","+Integer.toString(floorNum-1)+","+coolness+"\r\n");
+        }
+        scores.close();
+    }
+}
+
+/*Names: James, Kowan, Yibo, Howard
+Main contributors: Kowan
+ * Date Finished: 2020-04-24
+ * Title: Creation Page
+ * Description: Page with functions where mobs are created and randomized
+ * */
+package com.company;
+import java.util.*;
+import java.io.*;
+
+public class createMob {
+    //refere to member1. and member2.
+    //refer to enemy1. and enemy2.
+    public String name= randomName();
+    //stats go [hp, attack, magic, def, magic resist, speed]
+    int[] mobStats=new int[6];
+
+    /*---------------------------------------FUNCTION WITHOUT PARAMETER-------------------------------*/
+    public static String randomName(){
+        double companion=Math.random();
+        //random name for companion
+        if(companion<=0.25){
+            return "Kowan";
+        }
+
+        else if(companion<0.5){
+            return "Howard";
+        }
+
+        else if(companion<0.75){
+            return "YiBo";
+        }
+
+        else{
+            return"James";
+        }
+    }
+
+    //mob creation and randomization
+    /*---------------------------------------FUNCTION WITH PARAMETER-------------------------------*/
+    public static int[] statsCalc(int[] coreStats, String type){
+        if(type.equals("player")){
+            //makes sure that the player stats are kinda balanced
+            coreStats= new int[]{15, 5, 5, 2, 2, 2};
+            for(int statPoints=20;statPoints>0;statPoints--){
+                int pointInto=(int) Math.round(Math.random()*5);
+
+                coreStats[pointInto]=coreStats[pointInto]+1;
+            }
+            return coreStats;
+        }
+
+        else{
+            int extraPoints=15;
+
+            while(extraPoints>0){
+                extraPoints--;
+                double chanceOf=Math.random();
+
+                //the following code buffs the enemies based on core stats. the higher the core stat the higher the chance that is has to be increased.
+                //this way, defense mobs stay defense and atk mobs stay atk. MATH MAKES SENSE!!!
+                if(chanceOf<((double)(coreStats[0])/coreStats[6])){
+                    coreStats[0]+=1;
+                }
+
+                else if(chanceOf<((double)(coreStats[0]+coreStats[1])/coreStats[6])){
+                    coreStats[1]+=1;
+                }
+
+                else if(chanceOf<((double)(coreStats[0]+coreStats[1]+coreStats[2])/coreStats[6])){
+                    coreStats[2]+=1;
+                }
+
+                else if(chanceOf<((double)(coreStats[0]+coreStats[1]+coreStats[2]+coreStats[3])/coreStats[6])){
+                    coreStats[3]+=1;
+                }
+
+                else if(chanceOf<((double)(coreStats[0]+coreStats[1]+coreStats[2]+coreStats[3]+coreStats[4])/coreStats[6])){
+                    coreStats[4]+=1;
+                }
+
+                else{
+                    coreStats[5]+=1;
+                }
+            }
+            return coreStats;
+        }
+    }
+
+    //character improvement
+    /*----------------------------------------FUNCTION WITH PARAMETER-------------------------------------*/
+    public static int[] statAdd(int upgrades,int[] stats,String member){
+        int[] temp=stats;
+
+        do{
+            Scanner addTo=new Scanner(System.in);
+            System.out.println("You have "+upgrades+" upgrade points remaining for "+member+". What stats would you like to improve by 1 point?");
+            System.out.println("1) Hp 2) Attack 3) Magic 4) Defense 5) Magic Resist 6) Speed");
+            int intoWhat=addTo.nextInt();
+            intoWhat-=1;
+            temp[intoWhat]=temp[intoWhat]+1;
+            upgrades--;
+        }while(upgrades>0);
+
+        System.out.println("Your new stats are for "+member+" are HP: "+temp[0]+", Attack: "+temp[1]+", Magic: "+temp[2]+", Defense: "+temp[3]+", Magic Resist "+temp[4]+", Speed: "+temp[5]+" ");
+        return temp;
+    }
+
+    /*---------------------------------FUNCTION WITHOUT PARAMETER-----------------------------------------*/
+    public static int[] randomMob(int mob,int totalLines)throws IOException{
+        /*------------------------------------------------------------------
+        ---------------------USE OF File Reading------------------------------
+        ---------------------------------------------------------------------*/
+        BufferedReader br=new BufferedReader(new FileReader("mobStats.csv"));
+
+        String line="";
+        int[] temp=new int[7];
+
+
+        //array for every single mob to get stats
+        /*------------------------------------------------------------------
+        ---------------------USE OF 2D ARRAY------------------------------
+        ---------------------------------------------------------------------*/
+        //2d array to sort enemies core stats
+        String[][] everyMob=new String[totalLines][8];
+
+        //makes array full of the mobs
+        /*------------------------------------------------------------------
+        ---------------------USE OF LOOPS------------------------------
+        ---------------------------------------------------------------------*/
+        for(int pos=0;pos<totalLines;pos+=1){
+            line=br.readLine();
+
+            if(line!=null){
+                String[] insert = line.split(",");
+                everyMob[pos] = insert;
+            }
+        }
+
+        br.close();
+        //incase mob=0, or is greater than file length this makes is so the code does not crash
+        if(mob==0){
+            mob=1;
+        }
+
+        if(mob>=totalLines){
+            //just to be safe
+            mob=3;
+        }
+        //create mob stats without name
+        for(int index=1;index<8;index++){
+            temp[index-1]=Integer.parseInt(everyMob[mob][index]);
+        }
+
+        return statsCalc(temp,"mob");
+    }
+
+    public static String mobName(int mob,int totalLines)throws IOException{
+        //incase mob=0, or is greater than file length this makes is so the code does not crash
+        if(mob==0){
+            mob=1;
+        }
+
+        if(mob>=totalLines){
+            //just to be safe
+            mob=3;
+        }
+
+        //create array of every mob again, this time to return the name
+        BufferedReader br=new BufferedReader(new FileReader("mobStats.csv"));
+        String line="";
+
+        String[][] everyMob=new String[totalLines][8];
+
+        //makes array full of the mobs
+        /*------------------------------------------------------------------
+        ---------------------USE OF LOOPS------------------------------
+        ---------------------------------------------------------------------*/
+        for(int pos=0;pos<totalLines;pos+=1){
+            line=br.readLine();
+
+            if(line!=null){
+                String[] insert = line.split(",");
+                everyMob[pos] = insert;
+            }
+        }
+        br.close();
+        String name=everyMob[mob][0];
+        return name;
+    }
+
+    /*---------------------------------------FUNCTION WITHOUT PARAMETER-------------------------------*/
+    public static int mobNum()throws IOException{
+        BufferedReader howMany=new BufferedReader(new FileReader("mobStats.csv"));
+        String line="";
+        int totalLines=0;
+
+        do{
+            line = howMany.readLine();
+            totalLines+=1;
+        }while(line!=null);
+
+        totalLines-=1;
+        howMany.close();
+
+        return totalLines;
+    }
+}
+
+
+/*Names: James, Kowan, Yibo, Howard
+Main contributors: YiBo Howard
+* Date: 2020-04-24
+* Title: Combat Page
+* Description: Page with functions for combat
+* */
+
+package com.company;
+import java.util.*;
+import java.io.*;
+public class combat {
+
+    public static boolean floor(int[] player1Stats, int[] player2Stats, int[] mob1Stats, int[] mob2Stats, String[][] participants, String name) {
+        int turnCount = 1;
+        System.out.println("You have encounter two monsters! \nThe first monster is called "+participants[1][0]+" and has the stats HP: " + mob1Stats[0] + ", Attack: " + mob1Stats[1] + ", Magic: " + mob1Stats[2] + ", Defense: " + mob1Stats[3] + ", Magic Resist: " + mob1Stats[4] + ", Speed: " + mob1Stats[5]);
+        System.out.println("The second monster is called "+participants[1][1]+" and has the stats HP: " + mob2Stats[0] + ", Attack: " + mob2Stats[1] + ", Magic: " + mob2Stats[2] + ", Defense: " + mob2Stats[3] + ", Magic Resist: " + mob2Stats[4] + ", Speed: " + mob2Stats[5]);
+        //Checks if your party is faster than both the mobs and who goes first based on speed
+        /*------------------------------------------------------------------
+        ---------------------USE OF SELECTION------------------------------
+        ---------------------------------------------------------------------*/
+        if (combatTurn(player1Stats[5], player2Stats[5], mob1Stats[5], mob2Stats[5])) {
+            while (player1Stats[0] + player2Stats[0] > 0 && mob1Stats[0] + mob2Stats[0] > 0) {
+                System.out.println("/////////////Round " + turnCount + " is now underway!/////////////");
+                //print current stats
+                printStats(player1Stats,player2Stats,mob1Stats,mob2Stats,participants);
+                System.out.println("It is now your party's turn\nPlease decide what you are going to do!");
+                //player phase
+                if(player1Stats[0]>0){
+                    yourTurn(playerDecision(participants[0][0]), player1Stats, player2Stats, mob1Stats, mob2Stats, participants[0][0], participants[0][1], participants);
+                }
+
+                if(player2Stats[0]>0){
+                    yourTurn(playerDecision(participants[0][1]), player2Stats, player1Stats, mob1Stats, mob2Stats, participants[0][1], participants[0][0], participants);
+                }
+
+                //enemy phase
+                System.out.println("Now, it is your enemies turn");
+
+                if(mob1Stats[0]>0){
+                    enemyTurn(player1Stats, player2Stats, mob1Stats, mob2Stats, participants[1][0], participants[1][1], participants[0][0], name);
+                }
+
+                if(mob2Stats[0]>0){
+                    enemyTurn(player1Stats, player2Stats, mob2Stats, mob1Stats, participants[1][1], participants[1][0], participants[0][0], name);
+                }
+
+                turnCount++;
+                //makes sure that hp is not below 0
+                if(player1Stats[0]<0){
+                    player1Stats[0]=0;
+                }
+                if(player2Stats[0]<0){
+                    player2Stats[0]=0;
+                }
+
+                if(mob1Stats[0]<0){
+                    mob1Stats[0]=0;
+                }
+
+                if(mob2Stats[0]<0){
+                    mob2Stats[0]=0;
+                }
+            }
+
+        } else {
+            while (player1Stats[0] + player2Stats[0] > 0 && mob1Stats[0] + mob2Stats[0] > 0) {
+                System.out.println("/////////////Round " + turnCount + " is now underway!/////////////");
+                //print stats again
+                printStats(player1Stats,player2Stats,mob1Stats,mob2Stats,participants);
+                System.out.println("It is the enemies' turn!");
+
+                //enemy phase
+                if(mob1Stats[0]>0){
+                    enemyTurn(player1Stats, player2Stats, mob1Stats, mob2Stats, participants[1][0], participants[1][1], participants[0][0], name);
+                }
+
+                if(mob2Stats[0]>0){
+                    enemyTurn(player1Stats, player2Stats, mob2Stats, mob1Stats, participants[1][1], participants[1][0], participants[0][0], name);
+                }
+                System.out.println("Your turn now!");
+                //player phase
+                if(player1Stats[0]>0){
+                    yourTurn(playerDecision(participants[0][0]), player1Stats, player2Stats, mob1Stats, mob2Stats, participants[0][0], participants[0][1], participants);
+                }
+
+                if(player2Stats[0]>0){
+                    yourTurn(playerDecision(participants[0][1]), player2Stats, player1Stats, mob1Stats, mob2Stats, participants[0][1], participants[0][1], participants);
+                }
+
+                turnCount++;
+                //makes sure that hp is not below 0
+                if(player1Stats[0]<0){
+                    player1Stats[0]=0;
+                }
+                if(player2Stats[0]<0){
+                    player2Stats[0]=0;
+                }
+
+                if(mob1Stats[0]<0){
+                    mob1Stats[0]=0;
+                }
+
+                if(mob2Stats[0]<0){
+                    mob2Stats[0]=0;
+                }
+            }
+        }
+
+        if(player1Stats[0] + player2Stats[0] <=0){
+            //this is intentional so that it sticks out
+            System.out.println("                       Your party has been wiped!\n                          Off the the grave you go!");
+            return true;
+        }
+
+        else{
+            System.out.println("                       The enemy party has fainted!\n                          Moving on to the next floor!");
+            return false;
+        }
+    }
+
+    public static void yourTurn(int decision, int[] player1Stats, int[] player2Stats, int[] mob1Stats, int[] mob2Stats, String caster, String partner, String[][] participants) {
+        //insert parameters
+        //1 for attack 2 for magic 3 for heal
+        if (decision == 1) {
+            if (attackDecision(participants[1][0], participants[1][1],false) == 1) {
+                mob1Stats[0]=attack(participants[1][0], mob1Stats[0], mob1Stats[3], player1Stats[1]);
+            }
+            else {
+                mob2Stats[0]=attack(participants[1][1], mob2Stats[0], mob2Stats[3], player1Stats[1]);
+            }
+        } else if (decision == 2) {
+            if (attackDecision(participants[1][0], participants[1][1],false) == 1) {
+                mob1Stats[0]=magicAttack(participants[1][0], mob1Stats[0], mob1Stats[4], player1Stats[2]);
+            }
+            else {
+                mob2Stats[0]=magicAttack(participants[1][1], mob2Stats[0], mob2Stats[4], player1Stats[2]);
+            }
+
+        } else if (decision == 3) {
+            if(attackDecision(participants[0][0], participants[0][1],true)==1){
+                player1Stats[0]= heal(player1Stats[0], player1Stats[2], caster);
+            }
+
+            else{
+                player2Stats[0]=heal(player2Stats[0], player1Stats[2], partner);
+            }
+
+        }
+    }
+
+    //gets the players decision
+    public static int playerDecision(String caster) {
+        /*------------------------------------------------------------------
+        ---------------------USE OF CONSOLE INPUT------------------------------
+        ---------------------------------------------------------------------*/
+
+        System.out.println("For " + caster +"'s action, please type 1 for attack, 2 for magic attack, and 3 for heal");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        return choice;
+    }
+    //Target which ally or enemy
+    public static int attackDecision(String mob1Name, String mob2Name,boolean heal) {
+        /*------------------------------------------------------------------
+        ---------------------USE OF CONSOLE INPUT------------------------------
+        ---------------------------------------------------------------------*/
+        Scanner scan = new Scanner(System.in);
+        int choice;
+        if(heal){
+            System.out.println("Who to heal? Enter 1 to 'self heal', 2 to 'friendly heal'.");
+            choice=scan.nextInt();
+            return choice;
+        }
+
+        else{
+            System.out.println("Press 1 to hit " + mob1Name + ", 2 for " + mob2Name);
+            choice = scan.nextInt();
+            return choice;
+        }
+    }
+
+    //The function that checks which party is faster
+    public static boolean combatTurn(int player1Spd, int player2Spd, int mob1Spd, int mob2Spd) {
+        if (player1Spd + player2Spd > mob1Spd + mob2Spd) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    //Player options
+    //Use physical attack
+    public static int attack(String mobName, int mobHP, int mobDef, int playerAtk) {
+        int damage=playerAtk-mobDef;
+
+        if(damage<=0){
+            //makes sure damage is not less than 1 fo balance
+            damage=1;
+        }
+
+        mobHP = mobHP-damage;
+        if (mobHP <= 0) {
+            System.out.println(mobName + " has fainted!");
+            mobHP = 0;
+        } else {
+            System.out.println("Attacked " + mobName + " for "+damage+" damage! He now has " + mobHP + " HP");
+        }
+        return mobHP;
+    }
+    //Use magic attack
+    public static int magicAttack(String mobName, int mobHP, int mobRes, int playerMag) {
+        int damage=playerMag-mobRes;
+        if(damage<=0){
+            damage=1;
+        }
+        mobHP=mobHP-damage;
+        if (mobHP <= 0) {
+            System.out.println(mobName + " has fainted!");
+            mobHP = 0;
+        } else {
+            System.out.println("Attacked " + mobName + " with magic for "+damage+" damage! He now has " + mobHP + " HP");
+        }
+        return mobHP;
+    }
+    //Heal yourself or your partner
+    public static int heal(int HP, int mag, String receiver) {
+        //you can heal yourself above your current hp to we need to fix that. No its not a bug its a feature...
+        HP = HP + mag;
+        System.out.println("Healed " + receiver + " for " + mag + "! " + receiver + " now has " + HP + " HP!");
+        return HP;
+    }
+
+    //enemy moves---------------------------------------------------------------
+    public static void enemyTurn(int[] player1Stats, int[] player2Stats, int[] mob1Stats, int[] mob2Stats, String participants, String participants2, String player1Name, String name) {
+        if (mob1Stats[0] < 5 && mob1Stats[0] > 0) {
+            mob1Stats[0]=enemySelfHeal(mob1Stats[0], mob1Stats[2], participants);
+
+        } else if ((mob2Stats[0] < 5 && mob1Stats[0] > 0) && (mob1Stats[0] < 5 && mob2Stats[0] > 0)) {
+            mob2Stats[0]=enemyPartnerHeal(mob2Stats[0], mob1Stats[2], participants, participants2);
+        } else {
+            enemyAtk(player1Stats, player2Stats, mob1Stats, mob2Stats, participants, player1Name, name);
+        }
+    }
+    //Enemy attacks
+    public static int enemyAtk(int[] player1Stats, int[] player2Stats, int[] mob1Stats, int[] mob2Stats, String attacker, String player1Name, String player2Name) {
+        int damage;
+        if (Math.random() < 0.5) {
+            //attack player1
+            //decide attack or magic
+            if (player1Stats[3] < player1Stats[4]) {
+                damage=mob1Stats[1]-player1Stats[3];
+                if (damage <= 0) {
+                    damage=0;
+                    System.out.println(player1Name + " fully defended "+ attacker +"'s physical attack and lost no HP!");
+                }
+                else{
+                    System.out.println(attacker + " just attacked "+ player1Name +" physically for "+damage+" damage!");
+                }
+                if (player1Stats[0]-damage<=0){
+                    System.out.println(player1Name + " has fainted!");
+                }
+                player1Stats[0] = player1Stats[0]-damage;
+            }
+
+            else {
+                damage=mob1Stats[2]-player1Stats[4];
+                if (damage <= 0) {
+                    damage=0;
+                    System.out.println(player1Name + " fully defended "+ attacker +"'s magic attack and lost no HP!");
+                }
+                else{
+                    System.out.println(attacker + " just attacked " + player1Name + " with magic for "+ damage +" damage!");
+                }
+                if (player1Stats[0]-damage<=0){
+                    System.out.println(player1Name + " has fainted!");
+                }
+                player1Stats[0] = player1Stats[0]-damage;
+            }return player1Stats[0];
+        }
+        else {
+            //attack player2
+            //decide attack or magic
+            if (player2Stats[3] < player2Stats[4]) {
+                damage= mob1Stats[1]-player2Stats[3];
+                if (damage <= 0) {
+                    damage=0;
+                    System.out.println(player2Name +" fully defended "+ attacker +"'s physical attack and lost no HP!");
+                }
+                else{
+                    System.out.println(attacker + " just attacked your partner " + player2Name + " physically for "+damage+" damage!");
+                }
+                if (player2Stats[0]-damage<=0){
+                    System.out.println(player2Name + " has fainted!");
+                }
+                player2Stats[0] = player2Stats[0]-damage;
+            } else {
+                damage= mob1Stats[2]-player2Stats[4];
+                if (damage <= 0) {
+                    damage=0;
+                    System.out.println(player2Name + " fully defended "+ attacker +"'s magic attack!");
+                }
+                else{
+                    System.out.println(attacker + " just attacked your partner " + player2Name + " with magic for "+damage+" damage!");
+                }
+                if (player2Stats[0]-damage<=0){
+                    System.out.println(player2Name + " has fainted!");
+                }
+                player2Stats[0] = player2Stats[0] -damage;
+            }return player2Stats[0];
+        }
+    }
+    //enemy heals itself
+    public static int enemySelfHeal( int mobHP, int mobMagic, String name)
+    {
+        mobHP = mobHP + mobMagic;
+        System.out.println(name + " heals itself for " + mobMagic+ ". It now has " + mobHP + " HP!");
+        return mobHP;
+    }
+    //enemy heals its partner
+    public static int enemyPartnerHeal( int mobHP2, int mobMag1, String name, String name2)
+    {
+        mobHP2 = mobHP2 + mobMag1;
+        System.out.println(name + " heals " + name2 + " for " + mobMag1+ ". It now has " + mobHP2 + " HP!");
+        return mobHP2;
+    }
+    public static void printStats(int[] member1, int[] member2, int[] mob1, int[] mob2, String[][] everyone){
+        System.out.println("\nYour stats are HP: "+member1[0]+", Attack: "+member1[1]+", Magic: "+member1[2]+", Defense: "+member1[3]+", Magic Resist: "+member1[4]+", Speed: "+member1[5]+" ");
+        System.out.println("Your partner "+everyone[0][1]+" has the stats HP: "+member2[0]+", Attack: "+member2[1]+", Magic: "+member2[2]+", Defense: "+member2[3]+", Magic Resist: "+member2[4]+", Speed: "+member2[5]+" ");
+        //print enemy stats
+        //line break
+        System.out.println("\nYour enemy "+everyone[1][0]+" has the stats HP: "+mob1[0]+", Attack: "+mob1[1]+", Magic: "+mob1[2]+", Defense: "+mob1[3]+", Magic Resist: "+mob1[4]+", Speed: "+mob1[5]+" ");
+        System.out.println("Your enemies partner "+everyone[1][1]+" has the stats HP: "+mob2[0]+", Attack: "+mob2[1]+", Magic: "+mob2[2]+", Defense: "+mob2[3]+", Magic Resist: "+mob2[4]+", Speed: "+mob2[5]+"\n");
+    }
+}

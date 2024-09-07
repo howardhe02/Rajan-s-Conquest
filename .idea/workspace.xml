@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="790e622e-dad7-4926-a98e-6f60b0a10925" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1asFAvBT2uPIZUdREgeIQUVCpVo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="help" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="790e622e-dad7-4926-a98e-6f60b0a10925" name="Default Changelist" comment="" />
+      <created>1587516254822</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587516254822</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="401" y="96" key="#Main" timestamp="1587598062120">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="401" y="96" key="#Main/0.0.1368.872@0.0.1368.872" timestamp="1587598062120" />
+    <state x="440" y="240" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595610894176">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="440" y="240" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1368.872@0.0.1368.872" timestamp="1595610894176" />
+    <state x="534" y="326" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1587762787139">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="534" y="326" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1368.872@0.0.1368.872" timestamp="1587762787139" />
+    <state x="362" y="202" key="FileChooserDialogImpl" timestamp="1587762775320">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="362" y="202" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1587762775320" />
+    <state width="1326" height="229" key="GridCell.Tab.0.bottom" timestamp="1587781028593">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="229" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1587781028593" />
+    <state width="1326" height="229" key="GridCell.Tab.0.center" timestamp="1587781028593">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="229" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1587781028593" />
+    <state width="1326" height="229" key="GridCell.Tab.0.left" timestamp="1587781028593">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="229" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1587781028593" />
+    <state width="1326" height="229" key="GridCell.Tab.0.right" timestamp="1587781028593">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="229" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1587781028593" />
+    <state width="1326" height="281" key="GridCell.Tab.1.bottom" timestamp="1587608438888">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="281" key="GridCell.Tab.1.bottom/0.0.1368.872@0.0.1368.872" timestamp="1587608438888" />
+    <state width="1326" height="281" key="GridCell.Tab.1.center" timestamp="1587608438888">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="281" key="GridCell.Tab.1.center/0.0.1368.872@0.0.1368.872" timestamp="1587608438888" />
+    <state width="1326" height="281" key="GridCell.Tab.1.left" timestamp="1587608438888">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="281" key="GridCell.Tab.1.left/0.0.1368.872@0.0.1368.872" timestamp="1587608438888" />
+    <state width="1326" height="281" key="GridCell.Tab.1.right" timestamp="1587608438888">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state width="1326" height="281" key="GridCell.Tab.1.right/0.0.1368.872@0.0.1368.872" timestamp="1587608438888" />
+    <state x="456" y="0" width="912" height="872" key="SettingsEditor" timestamp="1587762780509">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="456" y="0" width="912" height="872" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1587762780509" />
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog" timestamp="1595610886959">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="380" y="262" key="com.intellij.ide.util.TipDialog/0.0.1368.872@0.0.1368.872" timestamp="1595610886959" />
+    <state x="347" y="184" key="search.everywhere.popup" timestamp="1587518404250">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="347" y="184" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1587518404250" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/javaProjectRemake$Main.ic" NAME="Main Coverage Results" MODIFIED="1587542445830" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.company.*</FILTER>
+    </SUITE>
+  </component>
+</project>

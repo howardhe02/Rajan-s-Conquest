@@ -1,0 +1,10 @@
+Name,Floor,Were They Cool?
+Kowan,999,Broke Game. No
+Howard,999,Fixed Game. Yes
+James,999,Alpha All Around
+asd,YiBo,2,Smells funny. OK
+asd,James,2,Coolest
+bruh,YiBo,1,I've never met this person
+fdsaf,YiBo,1,Coolest
+as,YiBo,1,Super Awesome Gamer
+krnic,Howard,1,Super Awesome Gamer
