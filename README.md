@@ -1,13 +1,15 @@
 # Rajan's Conquest
 
-**Rajan's Conquest** is an adventure-filled, combat-based Java game where players battle their way through 100 floors, each filled with increasingly challenging enemies. Players create and manage their characters, engaging in strategic turn-based combat to conquer every floor and emerge victorious.
+**Rajan's Conquest** is a text-based war game developed with decision-making AI opponents. Players battle through 100 floors, each presenting unique challenges as they create and manage characters in strategic, turn-based combat. The game features a multilayered system built following clean architecture principles, consisting of API, web, and entity layers.
 
 ## Features
 
 - **Dynamic Character and Enemy Generation:** Create player characters and enemy mobs with unique stats for each run.
+- **AI Opponents:** Battle decision-making AI enemies that adapt and challenge your strategies.
 - **Turn-Based Combat:** Engage in strategic battles where every decision matters.
-- **Scoring System:** Track your progress and compare your scores over multiple sessions, with persistent score storage.
 - **Difficulty Scaling:** Experience increased difficulty as you progress, keeping gameplay challenging and exciting.
+- **Serialization and File Storage:** Save your progress and continue your adventure with a robust saving system.
+- **Clean Architecture:** The game follows clean architecture principles, ensuring maintainability and scalability through its multilayered system (API, web, and entity layers).
 
 ## How to Play
 
